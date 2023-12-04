@@ -40,7 +40,7 @@ const DeliveryAddressForm = () => {
         </Grid>
 
         <Grid item xs={12} lg={7} className="">
-          <Box className="border rounded-md shadow-md p-5 ml-4">
+          <Box className="border rounded-md shadow-md p-5 mx-2 mt-2">
             <form onSubmit={handleSubmit}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>

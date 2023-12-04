@@ -9,8 +9,12 @@ const HomeSectionCarousel = ({data, sectionName}) => {
 
   const responsive = {
     0: { items: 1 },
-    600: { items: 3 },
-    1024: { items: 4.5 },
+    450: { items: 1.5 },
+    500: { items: 2 },
+    600: { items: 2.5 },
+    800: { items: 3 },
+    1024: { items: 4 },
+    1300: { items: 4.5 },
   };
 
   const syncActiveIndex = ({ item }) => setActiveIndex(item);
@@ -25,6 +29,7 @@ const HomeSectionCarousel = ({data, sectionName}) => {
       <div className="relative p-5">
         <AliceCarousel
           items={items}
+          autoWidth       
           responsive={responsive}
           disableDotsControls
           onSlideChanged={syncActiveIndex}
@@ -34,7 +39,7 @@ const HomeSectionCarousel = ({data, sectionName}) => {
               return null;
             }
             return (
-              <p className="hover:cursor-pointer rounded-md py-4 mt-6 absolute bg-blue-500 left-[-40px] top-12">
+              <p className="ml-3 hover:cursor-pointer rounded-md py-4 mt-6 absolute bg-blue-500 left-[-40px] top-12">
                 <KeyboardArrowRightIcon
                   sx={{ color: "white", transform: "rotate(180deg)" }}
                 />
@@ -46,7 +51,7 @@ const HomeSectionCarousel = ({data, sectionName}) => {
               return null;
             }
             return (
-              <p className="hover:cursor-pointer rounded-md py-4 mt-6 absolute bg-blue-500 right-[-50px] top-12">
+              <p className="mr-4 hover:cursor-pointer rounded-md py-4 mt-6 absolute bg-blue-500 right-[-50px] top-12">
                 <KeyboardArrowRightIcon sx={{ color: "white" }} />
               </p>
             );

@@ -12,14 +12,14 @@ const Cart = () => {
   }
 
   return (
-    <div>
+    <div className='pt-8'>
 
-      <div className='lg:grid grid-cols-3 lg:px-16 relative'>
+      <div className='lg:grid grid-cols-3 lg:px-16 relative px-4'>
         <div className='grid col-span-2 gap-y-4'>
           {[1,1,1,1].map((item)=><CartItem/>)}
         </div>
 
-        <div className='pl-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>
+        <div className=' sticky top-20 h-[100vh] mt-5 lg:mt-0 px-2'>
           <div className='border rounded-lg p-4'>
             <p className='uppercase font-bold opacity-60 pb-3'>Price Details</p>
             <hr />

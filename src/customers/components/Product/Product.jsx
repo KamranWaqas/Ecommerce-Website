@@ -246,7 +246,7 @@ export default function Product() {
         </Transition.Root>
 
         <main className="mx-auto px-4 sm:px-6 lg:px-20">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-14">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               New Arrivals
             </h1>
@@ -322,10 +322,10 @@ export default function Product() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
               <div>
-                <div className="flex justify-between pb-6">
+                {/* <div className="flex justify-between pb-6">
                   <h1 className="text-lg opacity-50 font-bold">Filters</h1>
                   <FilterAltIcon className="text-gray-900 opacity-50" />
-                </div>
+                </div> */}
                 <form className="hidden lg:block">
                   {filters.map((section) => (
                     <Disclosure

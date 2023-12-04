@@ -287,16 +287,16 @@ export default function ProductDetails() {
         </section>
         {/* ratings and reviews */}
         <section>
-            <h1 className="font-semibold text-lg pb-4">Recent Rating & Review</h1>
-            <div className="border p-5">
+            <h1 className="font-semibold text-lg pb-4 ml-6">Recent Rating & Review</h1>
+            <div className="border p-5 mx-6">
                 <Grid container spacing={7}>
-                    <Grid item xs={7}>
+                    <Grid item xs={12} sm={7} >
                         <div className="space-y-5">
                             {[1,1,1].map((revirw)=> <ProductReviewCard/>)}
                         </div>
                     </Grid>
 
-                    <Grid item xs={5}>
+                    <Grid item xs={12} sm={5}>
                         <h1 className="text-xl font-semibold pb-2">Product Ratings</h1>
 
                         <div className="flex items-center space-x-3">
@@ -305,7 +305,7 @@ export default function ProductDetails() {
                         </div>
 
                         <Box className="mt-5 space-y-3">
-                            <Grid container alignItems="center" gap={2}>
+                            <Grid container alignItems="center" gap={4}>
                                 <Grid item xs={2}>
                                     <p>Excellent</p>
                                 </Grid>
@@ -313,7 +313,7 @@ export default function ProductDetails() {
                                   <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant="determinate" value={40} color="success"></LinearProgress>
                                 </Grid>
                             </Grid>
-                            <Grid container alignItems="center" gap={2}>
+                            <Grid container alignItems="center" gap={4}>
                                 <Grid item xs={2}>
                                     <p>Very Good</p>
                                 </Grid>
@@ -321,7 +321,7 @@ export default function ProductDetails() {
                                   <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant="determinate" value={30} color="success"></LinearProgress>
                                 </Grid>
                             </Grid>
-                            <Grid container alignItems="center" gap={2}>
+                            <Grid container alignItems="center" gap={4}>
                                 <Grid item xs={2}>
                                     <p>Good</p>
                                 </Grid>
@@ -329,7 +329,7 @@ export default function ProductDetails() {
                                   <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant="determinate" value={25} ></LinearProgress>
                                 </Grid>
                             </Grid>
-                            <Grid container alignItems="center" gap={2}>
+                            <Grid container alignItems="center" gap={4}>
                                 <Grid item xs={2}>
                                     <p>Average</p>
                                 </Grid>
@@ -337,7 +337,7 @@ export default function ProductDetails() {
                                   <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant="determinate" value={20} color="warning"></LinearProgress>
                                 </Grid>
                             </Grid>
-                            <Grid container alignItems="center" gap={2}>
+                            <Grid container alignItems="center" gap={4}>
                                 <Grid item xs={2}>
                                     <p>Poor</p>
                                 </Grid>
@@ -357,9 +357,9 @@ export default function ProductDetails() {
         {/* similiar product section */}
 
         <section className="pt-10"> 
-            <h1 className="py-5 text-xl font-bold">Similar Products</h1>
-            <div className="flex flex-wrap space-y-5 justify-between">
-                {mens_kurta.map((item)=><HomeSectionCard product={item}/>)}
+            <h1 className="pl-3 py-5 text-xl font-bold">Similar Products</h1>
+            <div className="flex flex-wrap space-y-5 justify-around">
+                {mens_kurta.slice(0,12).map((item)=><HomeSectionCard product={item}/>)}
             </div>
         </section>
       </div>

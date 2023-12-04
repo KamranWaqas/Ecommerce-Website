@@ -16,7 +16,7 @@ const CartItem = () => {
           <p className='font-semibold'>Men Slim Mid Rise Black Jeans</p>
           <p className='opacity-70'>Size: L,White</p>
           <p className='opacity-70 mt-2'>Seller: Crishtaliyo 2fashion</p>
-          <div className="flex space-x-5 items-center text-gray-900 pt-6">
+          <div className="flex space-x-2 items-center text-gray-900 pt-6">
                 <p className="font-semibold">Rs. 199</p>
                 <p className="opacity-50 line-through">Rs. 299</p>
                 <p className="text-green-600 font-semibold">5% Off</p>
