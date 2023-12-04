@@ -16,7 +16,7 @@ const OrderCard = () => {
                 <div className='flex'>
                     <img src="https://rukminim1.flixcart.com/image/612/612/xif0q/jean/v/c/n/30-586035-v-mart-original-imagmh7fzah3r2jj.jpeg?q=70" alt="" className='w-[5rem] h-[5rem] object-cover object-top'/>
                     <div className='ml-5 space-y-2'>
-                        <p className=''>Men Slim Mid Rise Black Jeans</p>
+                        <p className=''>Men Slim Mid Rise Black Jeans update</p>
                         <p className='opacity-50 text-xs font-semibold'>Size: M</p>
                         <p className='opacity-50 text-xs font-semibold'>Color: Black</p>
 
