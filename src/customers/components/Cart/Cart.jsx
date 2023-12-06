@@ -15,7 +15,8 @@ const Cart = () => {
     <div className='pt-8'>
 
       <div className='lg:grid grid-cols-3 lg:px-16 relative px-4'>
-        <div className='grid col-span-2 gap-y-4'>
+        <div className='grid col-span-2 gap-y-4 border rounded-lg p-2'>
+          <h1 className='text-2xl font-extrabold text-gray-800 py-3 pl-1'>Cart Items</h1>
           {[1,1,1,1].map((item)=><CartItem/>)}
         </div>
 

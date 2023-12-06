@@ -17,8 +17,8 @@ const Order = () => {
 
         {/* ORDER STATUS */}
 
-        <Grid item xs={2.5}>
-            <div className='h-auto shadow-xl bg-white p-5 sticky top-5'>
+        <Grid item xs={12} sm={2.5} sx={{paddingBottom:"10px"}}>
+            <div className='h-auto shadow-lg rounded-lg bg-white p-5 sticky top-5'>
 
                 <h1 className='font-bold text-lg'>Filter</h1>
 
@@ -41,7 +41,7 @@ const Order = () => {
 
         {/* ORDER */}
 
-        <Grid item xs={9} className=''>
+        <Grid item xs={12} sm={9} className=''>
             {[1,1,1,1,1].map((value)=><OrderCard/>)}
             
 
