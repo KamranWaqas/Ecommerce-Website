@@ -1,8 +1,10 @@
 import React from "react";
+import "./card.css"
 
 const HomeSectionCard = ({ product }) => {
   return (
-    <div className=" cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg  overflow-x-hidden w-[15rem] ml-3">
+    <div className="py-2 custome-response">
+      <div className=" cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg  overflow-x-hidden w-[15rem] ml-3 h-[20rem]">
       <div className="h-[13rem] ">
         <img
           className="object-cover object-top w-full h-full"
@@ -17,6 +19,7 @@ const HomeSectionCard = ({ product }) => {
           {product.title}
         </p>
       </div>
+    </div>
     </div>
   );
 };

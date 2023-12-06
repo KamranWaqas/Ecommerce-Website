@@ -19,7 +19,6 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import FilterAltIcon from "@mui/icons-material/FilterList";
 
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
@@ -449,7 +448,7 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className="flex flex-wrap justify-center bg-white py-5 ">
-                  {mens_kurta.map((item) => (
+                  {mens_kurta.slice(0,18).map((item) => (
                     <ProductCard product={item} />
                   ))}
                 </div>

@@ -13,8 +13,12 @@ const HomeSectionCarousel = ({data, sectionName}) => {
     500: { items: 2 },
     600: { items: 2.5 },
     800: { items: 3 },
-    1024: { items: 4 },
+    1024: { items: 3.2 },
+    1215: { items: 4 },
     1300: { items: 4.5 },
+    1600: { items: 5.5 },
+    1950: { items: 6.5 },
+    2400: { items: 7.5 },
   };
 
   const syncActiveIndex = ({ item }) => setActiveIndex(item);
@@ -25,11 +29,11 @@ const HomeSectionCarousel = ({data, sectionName}) => {
 
   return (
     <div className="lg:px-8">
-        <h2 className="text-2xl font-extrabold text-gray-800 py-5">{sectionName}</h2>
+        <h2 className="text-2xl font-extrabold text-gray-800 py-3">{sectionName}</h2>
       <div className="relative p-5">
         <AliceCarousel
           items={items}
-          autoWidth       
+          // autoWidth       
           responsive={responsive}
           disableDotsControls
           onSlideChanged={syncActiveIndex}
