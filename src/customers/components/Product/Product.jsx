@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -19,6 +19,9 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../../../redux/actions/productActions";
+import axios from 'axios';
 
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
@@ -30,6 +33,23 @@ function classNames(...classes) {
 }
 
 export default function Product() {
+
+  const products = useSelector((state)=>state.allProducts.products);
+  const dispatch = useDispatch();
+
+  const fetchProducts = async () => {
+      const response = await axios.get("https://fakestoreapi.com/products").catch((err)=>{
+        console.log("Err", err);
+      })
+      dispatch(setProducts(response.data));
+  }
+
+  useEffect(()=>{
+    fetchProducts();
+  },[])
+  // console.log("products: ", products)
+
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const location=useLocation();
   const navigate=useNavigate();
@@ -448,9 +468,10 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className="flex flex-wrap justify-center bg-white py-5 ">
-                  {mens_kurta.slice(0,18).map((item) => (
+                  {/* {mens_kurta.slice(0,18).map((item) => (
                     <ProductCard product={item} />
-                  ))}
+                  ))} */}
+                  <ProductCard />
                 </div>
               </div>
             </div>

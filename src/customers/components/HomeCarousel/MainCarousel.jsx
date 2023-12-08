@@ -1,12 +1,14 @@
 import React from 'react'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { mainCarouselData } from './MainCarouselData';
 
 const MainCarousel = () => {
+  const navigate=useNavigate();
 
-    const items = mainCarouselData.map((item) => <img className='cursor-pointer' role="presentation" src={item.image} alt='' />);
+    const items = mainCarouselData.map((item) => <img onClick={()=>navigate("/women/clothing/top")} className='cursor-pointer' role="presentation" src={item.image} alt='' />);
 
   return (
     <AliceCarousel
