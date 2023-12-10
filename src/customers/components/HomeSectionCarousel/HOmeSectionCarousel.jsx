@@ -25,15 +25,14 @@ const HomeSectionCarousel = ({data, sectionName}) => {
 
   const items = data
     .slice(0, 12)
-    .map((item) => <HomeSectionCard key={item.id} product={item} />);
+    .map((item) => <HomeSectionCard key={item.id} product={item}/>);
 
   return (
     <div className="lg:px-8">
         <h2 className="text-2xl font-extrabold text-gray-800 py-3">{sectionName}</h2>
       <div className="relative p-5">
         <AliceCarousel
-          items={items}
-          // autoWidth       
+          items={items}      
           responsive={responsive}
           disableDotsControls
           onSlideChanged={syncActiveIndex}
@@ -51,7 +50,7 @@ const HomeSectionCarousel = ({data, sectionName}) => {
             );
           }}
           renderNextButton={() => {
-            if (activeIndex === items.length - 5) {
+            if (activeIndex === items.length - 4) {
               return null;
             }
             return (

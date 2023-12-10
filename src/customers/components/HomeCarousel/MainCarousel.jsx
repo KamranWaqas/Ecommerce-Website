@@ -8,7 +8,7 @@ import { mainCarouselData } from './MainCarouselData';
 const MainCarousel = () => {
   const navigate=useNavigate();
 
-    const items = mainCarouselData.map((item) => <img onClick={()=>navigate("/women/clothing/top")} className='cursor-pointer' role="presentation" src={item.image} alt='' />);
+    const items = mainCarouselData.map((item) => <img onClick={()=>navigate("/product")} className='cursor-pointer' role="presentation" src={item.image} alt='' />);
 
   return (
     <AliceCarousel

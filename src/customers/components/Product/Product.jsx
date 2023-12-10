@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -7,9 +7,7 @@ import {
   FunnelIcon,
   MinusIcon,
   PlusIcon,
-  Squares2X2Icon,
 } from "@heroicons/react/20/solid";
-import { mens_kurta } from "../../../Data/mens_kurta";
 import ProductCard from "./ProductCard";
 import { filters, singleFilter } from "./filterdata";
 import {
@@ -19,14 +17,8 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../../../redux/actions/productActions";
-import axios from 'axios';
+import { useDispatch } from "react-redux";
 
-const sortOptions = [
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -34,26 +26,20 @@ function classNames(...classes) {
 
 export default function Product() {
 
-  const products = useSelector((state)=>state.allProducts.products);
-  const dispatch = useDispatch();
+  const categories = ["all",  
+  "electronics",
+  "jewelery",
+  "men's clothing",
+  "women's clothing"]
+  const [selectedOption, setSelectedOption] = useState('all');
 
-  const fetchProducts = async () => {
-      const response = await axios.get("https://fakestoreapi.com/products").catch((err)=>{
-        console.log("Err", err);
-      })
-      dispatch(setProducts(response.data));
-  }
-
-  useEffect(()=>{
-    fetchProducts();
-  },[])
-  // console.log("products: ", products)
-
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const location=useLocation();
   const navigate=useNavigate();
-
 
 
   const handleFilter = (value, sectionId) => {
@@ -272,11 +258,11 @@ export default function Product() {
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
-                <div>
-                  <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Sort
+                <div className="">
+                  <Menu.Button className="group inline-flex justify-center text-lg font-medium text-gray-700 hover:text-gray-900">
+                    Products Filter
                     <ChevronDownIcon
-                      className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500 mt-1"
                       aria-hidden="true"
                     />
                   </Menu.Button>
@@ -293,20 +279,21 @@ export default function Product() {
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
+                      {categories.map((option) => (
+                        <Menu.Item key={option}>
                           {({ active }) => (
                             <a
                               href={option.href}
                               className={classNames(
                                 option.current
                                   ? "font-medium text-gray-900"
-                                  : "text-gray-500",
+                                  : "text-gray-500 cursor-pointer",
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm"
                               )}
+                              onClick={() => handleOptionClick(option)}
                             >
-                              {option.name}
+                              {option.charAt(0).toUpperCase() + option.slice(1)}
                             </a>
                           )}
                         </Menu.Item>
@@ -316,13 +303,7 @@ export default function Product() {
                 </Transition>
               </Menu>
 
-              <button
-                type="button"
-                className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
-              >
-                <span className="sr-only">View grid</span>
-                <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-              </button>
+              
               <button
                 type="button"
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
@@ -341,10 +322,6 @@ export default function Product() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
               <div>
-                {/* <div className="flex justify-between pb-6">
-                  <h1 className="text-lg opacity-50 font-bold">Filters</h1>
-                  <FilterAltIcon className="text-gray-900 opacity-50" />
-                </div> */}
                 <form className="hidden lg:block">
                   {filters.map((section) => (
                     <Disclosure
@@ -471,7 +448,7 @@ export default function Product() {
                   {/* {mens_kurta.slice(0,18).map((item) => (
                     <ProductCard product={item} />
                   ))} */}
-                  <ProductCard />
+                  <ProductCard category={selectedOption}/>
                 </div>
               </div>
             </div>

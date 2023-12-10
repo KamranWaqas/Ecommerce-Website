@@ -53,8 +53,6 @@ export default function Navigation() {
   };
 
 
-
-
   return (
     <div className="bg-white mb-16">
       {/* Mobile menu */}
@@ -97,16 +95,17 @@ export default function Navigation() {
                 {/* Links */}
                 <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
-                    <Tab.List className="-mb-px flex space-x-8 px-4">
+                    <Tab.List className="flex flex-col space-y-4">
                       {navigation.categories.map((category) => (
                         <Tab
+                          onClick={()=>{navigate(category.to); setOpen(false)}}
                           key={category.name}
                           className={({ selected }) =>
                             classNames(
                               selected
                                 ? "border-indigo-600 text-indigo-600"
                                 : "border-transparent text-gray-900",
-                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium border-none"
+                              "flex-1 whitespace-nowrap border-b-2 py-4 text-base font-medium border-none"
                             )
                           }
                         >
@@ -114,117 +113,16 @@ export default function Navigation() {
                         </Tab>
                       ))}
                     </Tab.List>
+                      
+                    <div style={{alignItems:"center"}} className="flex flex-col justify-center mt-3">
+                    <h1 onClick={()=>{setOpen(false)}} className=" py-3 border-t-2">Profile</h1>
+                    <h1 onClick={()=>{navigate("/account/order"); setOpen(false)}} className=" py-3 border-t-2">My Orders</h1>
+                    <h1 onClick={()=>{setOpen(false)}} className=" py-3 border-t-2">Logout</h1>
+                    </div>
                   </div>
-                  <Tab.Panels as={Fragment}>
-                    {navigation.categories.map((category) => (
-                      <Tab.Panel
-                        key={category.name}
-                        className="space-y-10 px-4 pb-8 pt-10"
-                      >
-                        <div className="grid grid-cols-2 gap-x-4">
-                          {category.featured.map((item) => (
-                            <div
-                              key={item.name}
-                              className="group relative text-sm"
-                            >
-                              <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <img
-                                  src={item.imageSrc}
-                                  alt={item.imageAlt}
-                                  className="object-cover object-center"
-                                />
-                              </div>
-                              <a
-                                href={item.href}
-                                className="mt-6 block font-medium text-gray-900"
-                              >
-                                <span
-                                  className="absolute inset-0 z-10"
-                                  aria-hidden="true"
-                                />
-                                {item.name}
-                              </a>
-                              <p aria-hidden="true" className="mt-1">
-                                Shop now
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        {category.sections.map((section) => (
-                          <div key={section.name}>
-                            <p
-                              id={`${category.id}-${section.id}-heading-mobile`}
-                              className="font-medium text-gray-900"
-                            >
-                              {section.name}
-                            </p>
-                            {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
-                            <ul
-                              role="list"
-                              aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
-                              className="mt-6 flex flex-col space-y-6"
-                            >
-                              {section.items.map((item) => (
-                                <li key={item.name} className="flow-root">
-                                  <p 
-                                  onClick={() =>
-                                    handleCategoryClick(
-                                      category,
-                                      section,
-                                      item,
-                                      
-                                    )
-                                  }
-                                   className="cursor-pointer -m-2 block p-2 text-gray-500">
-                                    {item.name}
-                                  </p>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </Tab.Panel>
-                    ))}
-                  </Tab.Panels>
+                  
                 </Tab.Group>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  {navigation.pages.map((page) => (
-                    <div key={page.name} className="flow-root">
-                      <a
-                        href={page.href}
-                        className="-m-2 block p-2 font-medium text-gray-900"
-                      >
-                        {page.name}
-                      </a>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <a
-                      href="/"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
-                  </div>
-                </div>
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="/" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900">
-                      CAD
-                    </span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -255,7 +153,6 @@ export default function Navigation() {
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
                   />
-
               </div>
 
               {/* Flyout menus */}
@@ -273,120 +170,16 @@ export default function Navigation() {
                                   : "border-transparent text-gray-700 hover:text-gray-800",
                                 "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                               )}
+                              onClick={()=>navigate(category.to)}
                             >
                               {category.name}
                             </Popover.Button>
                           </div>
-
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                          >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div
-                                className="absolute inset-0 top-1/2 bg-white shadow"
-                                aria-hidden="true"
-                              />
-
-                              <div className="relative bg-white">
-                                <div className="mx-auto max-w-7xl px-8">
-                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                      {category.featured.map((item) => (
-                                        <div
-                                          key={item.name}
-                                          className="group relative text-base sm:text-sm"
-                                        >
-                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img
-                                              src={item.imageSrc}
-                                              alt={item.imageAlt}
-                                              className="object-cover object-center"
-                                            />
-                                          </div>
-                                          <a
-                                            href={item.href}
-                                            className="mt-6 block font-medium text-gray-900"
-                                          >
-                                            <span
-                                              className="absolute inset-0 z-10"
-                                              aria-hidden="true"
-                                            />
-                                            {item.name}
-                                          </a>
-                                          <p
-                                            aria-hidden="true"
-                                            className="mt-1"
-                                          >
-                                            Shop now
-                                          </p>
-                                        </div>
-                                      ))}
-                                    </div>
-                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
-                                      {category.sections.map((section) => (
-                                        <div key={section.name}>
-                                          <p
-                                            id={`${section.name}-heading`}
-                                            className="font-medium text-gray-900"
-                                          >
-                                            {section.name}
-                                          </p>
-                                          {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
-                                          <ul
-                                            role="list"
-                                            aria-labelledby={`${section.name}-heading`}
-                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                          >
-                                            {section.items.map((item) => (
-                                              <li
-                                                key={item.name}
-                                                className="flex"
-                                              >
-                                                <p
-                                                  onClick={() =>
-                                                    handleCategoryClick(
-                                                      category,
-                                                      section,
-                                                      item,
-                                                      close
-                                                    )
-                                                  }
-                                                  className="cursor-pointer hover:text-gray-800"
-                                                >
-                                                  {item.name}
-                                                </p>
-                                              </li>
-                                            ))}
-                                          </ul>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
                         </>
                       )}
                     </Popover>
                   ))}
 
-                  {navigation.pages.map((page) => (
-                    <a
-                      key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      {page.name}
-                    </a>
-                  ))}
                 </div>
               </Popover.Group>
 
@@ -409,15 +202,7 @@ export default function Navigation() {
                       >
                         H
                       </Avatar>
-                      {/* <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleUserClick}
-                      >
-                        Dashboard
-                      </Button> */}
+
                       <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -447,16 +232,6 @@ export default function Navigation() {
                   )}
                 </div>
 
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <p className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </p>
-                </div>
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
