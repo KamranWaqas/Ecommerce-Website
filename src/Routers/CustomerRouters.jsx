@@ -20,11 +20,9 @@ const CustomerRouters = () => {
   const fetchProducts = async () => {
     try {
     const response = await axios.get("https://fakestoreapi.com/products");
-    // Assuming `setProducts` is a function that sets the products in your state
     dispatch(setProducts(response.data));
   } catch (error) {
     console.error("Error fetching products:", error);
-    // Handle the error, e.g., show a message to the user or set an error state
   }
 }
 
